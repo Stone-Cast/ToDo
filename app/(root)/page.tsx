@@ -16,7 +16,7 @@ const Page = () => {
       if (!session) router.push("/api/auth/signin");
       
       const tasksFromDB = await getTasks();
-      const cleanTasks = tasksFromDB.map((task: any, index: any) => ({
+      const cleanTasks = tasksFromDB.map((task: {title: string}, index: number) => ({
         id: index,
         value: task.title,
       }));
@@ -93,13 +93,13 @@ const Page = () => {
         <div className=" sm:right-0 flex-none">
           <button 
             onClick={async () => await signOut({ redirect: true })}
-            className="bg-black hover:bg-gray-600 text-gray-100 px-5 py-1 mx-2 sm:text-2xl text-sm rounded"
+            className="bg-black hover:bg-gray-600 text-gray-100 px-5 py-1 mx-2 sm:text-base text-sm rounded"
           >
             Log Out
           </button>
           <button 
               onClick={saveTasks}
-              className="bg-green-500 hover:bg-green-600 text-gray-100 px-5 py-1 sm:text-2xl text-sm rounded"
+              className="bg-green-500 hover:bg-green-600 text-gray-100 px-5 py-1 sm:text-base text-sm rounded"
             >
               Save
           </button>
